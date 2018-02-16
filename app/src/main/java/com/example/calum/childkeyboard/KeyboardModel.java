@@ -1,7 +1,13 @@
 package com.example.calum.childkeyboard;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+//import org.languagetool.JLanguageTool;
+//import org.languagetool.language.BritishEnglish;
+//import org.languagetool.rules.RuleMatch;
+
 
 public class KeyboardModel {
 
@@ -43,5 +49,23 @@ public class KeyboardModel {
 
         return selectedKey;
     }
+
+    /*
+    public void ltools(String s){
+        JLanguageTool langTool = new JLanguageTool(new BritishEnglish());
+        try {
+            List<RuleMatch> matches = langTool.check(s);
+            for (RuleMatch match : matches) {
+                System.out.println("Potential error at characters " +
+                        match.getFromPos() + "-" + match.getToPos() + ": " +
+                        match.getMessage());
+                System.out.println("Suggested correction(s): " +
+                        match.getSuggestedReplacements());
+            }
+        }
+        catch (IOException io){
+            System.out.println("ERRRROR");
+        }
+    }*/
 
 }
