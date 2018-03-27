@@ -4,17 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.languagetool.JLanguageTool;
-//import org.languagetool.language.BritishEnglish;
-//import org.languagetool.rules.RuleMatch;
 
 
 public class KeyboardModel {
 
     List<Key> keys = new ArrayList<Key>();
-    String [] firstRow = new String[]{"Q","W","E","R","T","Y","U","I","O","P"};
-    String [] secondRow = new String[]{"A","S","D","F","G","H","J","K","L"};
-    String [] thirdRow = new String[]{"Z","X","C","V","B","N","M"};
+    String [] firstRow = new String[]{"q","w","e","r","t","y","u","i","o","p"};
+    String [] secondRow = new String[]{"a","s","d","f","g","h","j","k","l"};
+    String [] thirdRow = new String[]{".","z","x","c","v","b","n","m","<-"};
 
 
     public String getFirstRowElem(int i){
@@ -47,25 +44,24 @@ public class KeyboardModel {
             }
         }
 
-        return selectedKey;
+        if (selectedKey.equals(".")){
+            return ". ";
+        }
+
+        return selectedKey.toLowerCase();
     }
 
-    /*
-    public void ltools(String s){
-        JLanguageTool langTool = new JLanguageTool(new BritishEnglish());
-        try {
-            List<RuleMatch> matches = langTool.check(s);
-            for (RuleMatch match : matches) {
-                System.out.println("Potential error at characters " +
-                        match.getFromPos() + "-" + match.getToPos() + ": " +
-                        match.getMessage());
-                System.out.println("Suggested correction(s): " +
-                        match.getSuggestedReplacements());
-            }
+    public String newSent(String sentence, String key){
+
+        if (key.equals("<-") & sentence.length() > 0){
+            return sentence.substring(0,sentence.length()-1);
         }
-        catch (IOException io){
-            System.out.println("ERRRROR");
+        else if(key.equals("<-") & sentence.length() == 0){
+            return sentence;
         }
-    }*/
+        else{
+            return sentence+key;
+        }
+    }
 
 }

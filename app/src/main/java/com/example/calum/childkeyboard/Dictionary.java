@@ -28,10 +28,8 @@ public class Dictionary {
 	}
 	
 	public List<String> createDict(){
-		
-		String fileName = "wlist_match10.txt";
 
-        // This will reference one line at a time
+		String fileName = "wlist_match10.txt";
         String line = null;
         List<String> list = new ArrayList<String>();
 
@@ -45,7 +43,6 @@ public class Dictionary {
                 list.add(line);
             }   
 
-            // Always close files.
             bufferedReader.close();     
             
             return list;
@@ -58,9 +55,7 @@ public class Dictionary {
         catch(IOException ex) {
             System.out.println(
                 "Error reading file '" 
-                + fileName + "'");                  
-            // Or we could just do this: 
-            // ex.printStackTrace();
+                + fileName + "'");
         }
 		return list;
 	}

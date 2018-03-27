@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyAndroidKey'
+            keyPassword 'keyboard'
+            storeFile file('C:/Users/Calum/Documents/Uni Work/KeyStore/android.jks')
+            storePassword 'keyboard'
+        }
+    }
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
     compileOptions {
@@ -9,7 +17,7 @@ android {
     }
     defaultConfig {
         applicationId "com.example.calum.childkeyboard"
-        minSdkVersion 26
+        minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -19,6 +27,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
