@@ -1,5 +1,10 @@
 package com.example.calum.childkeyboard;
 
+/**
+ * The Key object holds all the values.
+ * x and y coordinates needed along with character.
+ */
+
 public class Key {
 
     String keyChar;

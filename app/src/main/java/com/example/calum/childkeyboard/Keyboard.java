@@ -33,6 +33,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The keyboard class acts as the controller between the xml view and backend model.
+ * All widgets are initialised here and then listeners attached where necessary.
+ */
+
 public class Keyboard extends AppCompatActivity{
 
     private Ngram ngram;
@@ -50,6 +55,14 @@ public class Keyboard extends AppCompatActivity{
     private TextView score;
     private String fileName;
 
+    /**
+     * onCreate() initialises all of the widgets and
+     * sets their listeners.
+     *
+     * Global variables are also set here.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -70,7 +83,6 @@ public class Keyboard extends AppCompatActivity{
         gameWord = findViewById(R.id.textView2);
         score = findViewById(R.id.score);
         spinner = (Spinner) findViewById(R.id.spinner);
-        //tv.setInputType(InputType.TYPE_NULL);
         selectedWord="";
         tv.setActivated(true);
         tv.setPressed(true);
@@ -87,6 +99,14 @@ public class Keyboard extends AppCompatActivity{
         fileName = "LogFile_" + System.currentTimeMillis();
     }
 
+    /**
+     * writeLog takes in a type string and information string.
+     * The log line is created and then added to the current
+     * sessions log file.
+     *
+     * @param type
+     * @param text
+     */
     public void writeLog(String type,String text){
 
         Date d = new Date();
@@ -110,6 +130,10 @@ public class Keyboard extends AppCompatActivity{
 
     }
 
+    /**
+     * ButtonTouch is the listener for word correction. When the button
+     * is touched, the correct word is replaced by the spelling error.
+     */
     public class ButtonTouch implements View.OnClickListener {
 
         public void onClick(View v) {
@@ -124,7 +148,12 @@ public class Keyboard extends AppCompatActivity{
 
     }
 
-        public class EditTouch implements View.OnTouchListener {
+    /**
+     * EditTouch is the touch listener which is attached to the
+     * EditText widget. Once touched, the listener gets the word
+     * that has been tapped.
+     */
+    public class EditTouch implements View.OnTouchListener {
 
         Context context;
 
@@ -172,6 +201,9 @@ public class Keyboard extends AppCompatActivity{
 
     }
 
+    /**
+     * Touch listener to change between keyboard and game.
+     */
     public class GameButton implements View.OnClickListener {
 
         public void onClick(View v) {
@@ -206,6 +238,10 @@ public class Keyboard extends AppCompatActivity{
 
     }
 
+    /**
+     * Touch is the listener to the relative layout.
+     * Deals with the keyboard touches like getKey().
+     */
     public class Touch implements View.OnTouchListener {
 
         public boolean onTouch(View v, MotionEvent me) {
@@ -291,6 +327,14 @@ public class Keyboard extends AppCompatActivity{
         }
     }
 
+    /**
+     * Highlights the inputted string with the inputted word and colour.
+     *
+     * @param input
+     * @param tv
+     * @param color
+     * @return
+     */
     private SpannableString highlightString(String input, SpannableString tv, int color) {
 
         SpannableString spannableString = tv;
@@ -307,6 +351,11 @@ public class Keyboard extends AppCompatActivity{
         return spannableString;
     }
 
+    /**
+     * View is the drawable object. onDraw is called at the start
+     * to draw the keyboard keys on the screen. Keys are initialised
+     * here too.
+     */
     public class MyView extends View
     {
         Paint paint = null;
@@ -334,6 +383,8 @@ public class Keyboard extends AppCompatActivity{
 
             int widthApart = x/10;
             int heightApart = y /5;
+
+            System.out.println(radius);
 
             for (int i = 1; i < 11; i++){
                 int xco = widthApart*i - radius - (widthApart/10);

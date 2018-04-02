@@ -1,5 +1,9 @@
 package com.example.calum.childkeyboard;
 
+/**
+ * Bigram class holds all of the information for the given Bigram.
+ */
+
 public class Bigram {
 	
 	private int frequency;

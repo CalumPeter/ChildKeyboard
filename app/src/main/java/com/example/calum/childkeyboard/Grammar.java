@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Grammar class holds all of the implemented grammars.
+ * Used to stores common grammar mistakes and stores them
+ * in a list of lists.
+ */
+
 public class Grammar {
 
 	List<List<String>> grams;

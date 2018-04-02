@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Keyboard Model holds a list of keys.
+ * The class deals with the touches on the keyboard view.
+ */
 
 public class KeyboardModel {
 
@@ -31,6 +34,13 @@ public class KeyboardModel {
         keys.add(k);
     }
 
+    /**
+     * Coordinates are taken in and the closest key is returned.
+     *
+     * @param xco
+     * @param yco
+     * @return closest key
+     */
     public String getKey(int xco, int yco){
 
         double minDistance = Double.MAX_VALUE;
@@ -51,11 +61,20 @@ public class KeyboardModel {
         return selectedKey.toLowerCase();
     }
 
+    /**
+     * Takes in a string and adds the key value to it.
+     *
+     * @param sentence
+     * @param key
+     * @return updated sentence.
+     */
     public String newSent(String sentence, String key){
 
+        //If backspace is hit a letter is taken off of the string.
         if (key.equals("<-") & sentence.length() > 0){
             return sentence.substring(0,sentence.length()-1);
         }
+        //Nothing happens if string is empty.
         else if(key.equals("<-") & sentence.length() == 0){
             return sentence;
         }

@@ -12,6 +12,11 @@ import java.util.List;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 
+/**
+ * Dictionary class holds the list of words in the current dictionary.
+ * Spell checking and Levenshtein are implemented from here.
+ */
+
 public class Dictionary {
 	
 	List<String> dictionary;
@@ -26,7 +31,12 @@ public class Dictionary {
 	public List<String> getDict(){
 		return dictionary;
 	}
-	
+
+	/**
+	 * Creates a dictionary of words from a text file.
+	 *
+	 * @return list of words.
+	 */
 	public List<String> createDict(){
 
 		String fileName = "wlist_match10.txt";
@@ -59,7 +69,14 @@ public class Dictionary {
         }
 		return list;
 	}
-	
+
+	/**
+	 * Creates a 2D array with all indexes equaling 0.
+	 *
+	 * @param i
+	 * @param j
+	 * @return empty dictionary initialised to zero.
+	 */
 	public int[][] createEmptyDict(int i, int j){
 		
 		int[][] dict = new int[i][j];
@@ -73,7 +90,16 @@ public class Dictionary {
 		return dict;
 		
 	}
-	
+
+	/**
+	 * Sets the prefix for levenshtein distance.
+	 * Values for comparison of word with empty string.
+	 *
+	 * @param dict
+	 * @param l1
+	 * @param l2
+	 * @return 2D array with empty string prefix.
+	 */
 	public int[][] setPrefix(int[][] dict, int l1, int l2){
 		
 		for (int i = 1; i < l1; i++){
@@ -86,7 +112,15 @@ public class Dictionary {
 		
 		return dict;
 	}
-	
+
+	/**
+	 * Prints the 2D array of levenshtein distance.
+	 * Used for testing in development.
+	 *
+	 * @param dist
+	 * @param l1
+	 * @param l2
+	 */
 	public void printDict(int[][] dist, int l1, int l2){
 		for (int x = 0; x < l1; x++){
 			for (int y = 0; y < l2; y++){
@@ -95,7 +129,15 @@ public class Dictionary {
 			System.out.println("\n");
 		}
 	}
-	
+
+	/**
+	 *  Compares two strings and computes the Levenshtein Distance
+	 *  between them.
+	 *
+	 * @param word1
+	 * @param word2
+	 * @return levenshtein distance between two strings.
+	 */
 	public int levenshteinDistance(String word1, String word2){
 		
 		String w1 = " " + word1;
@@ -122,7 +164,14 @@ public class Dictionary {
 		
 		return dist[w1.length()-1][w2.length()-1];
 	}
-	
+
+	/**
+	 * Takes in a word and returns a list of strings that are
+	 * a distance of 1 away from it.
+	 *
+	 * @param word
+	 * @return list of words close to inputted word.
+	 */
 	public List<String> checkWord(String word){
 		
 		List<String> nearMiss = new ArrayList<String>();

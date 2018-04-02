@@ -1,5 +1,10 @@
 package com.example.calum.childkeyboard;
 
+/**
+ * Ngram class holds the list of Bigrams created for grammar.
+ * NGram also deals with grammar corrections.
+ */
+
 import android.content.res.AssetManager;
 
 import java.io.BufferedReader;
@@ -26,7 +31,15 @@ public class Ngram {
 	public List<Bigram> getBigrams(){
 		return listOfBigrams;
 	}
-	
+
+	/**
+	 * The inputted sentence is checked for grammar errors.
+	 * If any are found they are corrected and the corrected
+	 * sentence is returned.
+	 *
+	 * @param sentence
+	 * @return Corrected Sentence
+	 */
 	public String checkSentence(String sentence){
 		
 		String[] splitSent = sentence.split(" ");
@@ -36,10 +49,11 @@ public class Ngram {
 		for (int i = 0; i < splitSent.length; i++){
 			String bestB = "";
 			int best = 0;
+			//check each list of common grammatical errors.
 			for (List<String> grammar : grammar.getGrammars()){
 				
 				if (grammar.contains(splitSent[i])){
-						
+					//Go through Bigrams and get most frequent.
 					for(Bigram b : getBigrams()){
 						for (String gram : grammar){
 							if (i != splitSent.length-1){
@@ -75,7 +89,13 @@ public class Ngram {
 		
 		return newSent.trim();
 	}
-	
+
+	/**
+	 *  Reads in a text file and parses it to create
+	 *  a list of Bigrams.
+	 *
+	 * @return list of Bigram objects
+	 */
 	public List<Bigram> createBigrams(){
 		
 		String fileName = "grammarlist2.txt";

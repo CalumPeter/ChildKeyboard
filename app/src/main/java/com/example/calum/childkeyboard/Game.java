@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * The Game object holds all of the logic behind the game.
+ * Uses a hashmap to store a dictionary of words to then
+ * choose one to be tested.
+ */
+
 public class Game {
 
     private Map<String,Object> words;
@@ -29,6 +35,12 @@ public class Game {
         words.put("welcome",12);
     }
 
+    /**
+     * Adds inputted word.
+     * If the word is present its score is increased.
+     *
+     * @param w
+     */
     public void addWord(String w){
 
         if(!w.equals("")) {
@@ -57,6 +69,12 @@ public class Game {
         }
     }
 
+    /**
+     * If the word tested is spelt correctly the score is
+     * increased and the words score decreased.
+     *
+     * @param w
+     */
     public void incrementScore(String w){
         score++;
         if((int)words.get(w) > 0) {
@@ -65,6 +83,12 @@ public class Game {
         printMap();
     }
 
+    /**
+     * If the word tested is incorrect the score is decreased
+     * and the word score is increased.
+     *
+     * @param w
+     */
     public void decrementScore(String w){
         if(score>0){
             score--;
@@ -91,6 +115,11 @@ public class Game {
         return currentWord;
     }
 
+    /**
+     * Sets the next word to be tested.
+     * Words are added to a list the same amount of times
+     * as its score. String is then chosen at random.
+     */
     public void newWord(){
 
         if (counter == 0) {
